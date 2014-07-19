@@ -1,3 +1,3 @@
 # Contribution Guidelines
 
-Please submit all issues and pull requests to the [laravel/framework](http://github.com/laravel/framework) repository!
+Please submit all issues and pull requests to the [KarlJakober/PLS-Laravel](http://github.com/KarlJakober/PLS-Laravel) repository!
