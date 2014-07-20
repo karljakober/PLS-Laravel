@@ -7,10 +7,10 @@ php:
   - hhvm
 
 before_script:
-  - travis_retry composer self-update
-  - travis_retry composer install --no-interaction --prefer-source --dev
   - mysql -e 'create database pls_test;'
   - echo "<?php define('MYSQL_HOST', '0.0.0.0'); define('MYSQL_USER', 'travis'); define('MYSQL_PASSWORD', ''); define('MYSQL_DATABASE', 'pls_test');" > ./app/config/pls_config.php
+  - travis_retry composer self-update
+  - travis_retry composer install --no-interaction --prefer-source --dev
   - travis_retry php artisan asset:generate --env=testing
 
 script:
