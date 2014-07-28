@@ -19,8 +19,14 @@
   <script src="/js/pong.js"></script>
 
 </head>
-<body id="home">
-  @yield('content')
+<body id="pls" class="index" ontouchstart="">
+    @if(Auth::check())
+        @include('elements.sidebar')
+    @endif
+
+    @include('elements.navbar')
+
+    @yield('content')
 </body>
 
 </html>

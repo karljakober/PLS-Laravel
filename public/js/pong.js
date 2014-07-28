@@ -1,57 +1,91 @@
-$(document)
-  .ready(function() {
+// namespace
+window.semantic = {
+  handler: {}
+};
+
+// Allow for console.log to not break IE
+if (typeof window.console == "undefined" || typeof window.console.log == "undefined") {
+  window.console = {
+    log  : function() {},
+    info : function(){},
+    warn : function(){}
+  };
+}
+if(typeof window.console.group == 'undefined' || typeof window.console.groupEnd == 'undefined' || typeof window.console.groupCollapsed == 'undefined') {
+  window.console.group = function(){};
+  window.console.groupEnd = function(){};
+  window.console.groupCollapsed = function(){};
+}
+if(typeof window.console.markTimeline == 'undefined') {
+  window.console.markTimeline = function(){};
+}
+window.console.clear = function(){};
+
+// ready event
+semantic.ready = function() {
 
     var
-      changeSides = function() {
-        $('.ui.shape')
-          .eq(0)
-            .shape('flip over')
-            .end()
-          .eq(1)
-            .shape('flip over')
-            .end()
-          .eq(2)
-            .shape('flip back')
-            .end()
-          .eq(3)
-            .shape('flip back')
-            .end()
-        ;
+      $menu             = $('#menu'),
+      $hideMenu         = $('#menu .hide.item'),
+      $sidebarButton    = $('.attached.launch.button'),
+      $menuPopup        = $('.ui.main.menu .popup.item'),
+      $menuDropdown     = $('.ui.main.menu .dropdown'),
+
+      // alias
+      handler
+    ;
+
+  // event handlers
+  handler = {
+      menu: {
+          mouseenter: function() {
+            $(this)
+              .stop()
+              .animate({
+                width: '155px'
+              }, 300, function() {
+                $(this).find('.text').show();
+              })
+            ;
+          },
+          mouseleave: function(event) {
+            $(this).find('.text').hide();
+            $(this)
+              .stop()
+              .animate({
+                width: '70px'
+              }, 300)
+            ;
+          }
       },
-      validationRules = {
-        firstName: {
-          identifier  : 'email',
-          rules: [
-            {
-              type   : 'empty',
-              prompt : 'Please enter an e-mail'
-            },
-            {
-              type   : 'email',
-              prompt : 'Please enter a valid e-mail'
-            }
-          ]
-        }
+  };
+
+  $menuPopup
+    .popup({
+      position   : 'bottom center',
+      className: {
+        popup: 'ui popup'
       }
-    ;
+    })
+  ;
+  $menuDropdown
+    .dropdown({
+      on         : 'hover',
+      action     : 'nothing'
+    })
+  ;
+  $sidebarButton
+    .on('mouseenter', handler.menu.mouseenter)
+    .on('mouseleave', handler.menu.mouseleave)
+  ;
+  $menu
+    .sidebar('attach events', '.launch.button, .view-ui.button, .launch.item')
+    .sidebar('attach events', $hideMenu, 'hide')
+  ;
+};
 
-    $('.ui.dropdown')
-      .dropdown({
-        on: 'hover'
-      })
-    ;
 
-    $('.ui.form')
-      .form(validationRules, {
-        on: 'blur'
-      })
-    ;
-
-    $('.masthead .information')
-      .transition('scale in')
-    ;
-
-    setInterval(changeSides, 3000);
-
-  })
+// attach ready event
+$(document)
+  .ready(semantic.ready)
 ;

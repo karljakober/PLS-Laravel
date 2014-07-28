@@ -12,5 +12,8 @@
 */
 
 Route::get('/', array('uses' => 'HomeController@showWelcome'));
-Route::get('login', array('uses' => 'HomeController@showLogin'));
-Route::post('login', array('uses' => 'HomeController@doLogin'));
+Route::get('/dashboard', array('uses' => 'HomeController@showDashboard'));
+Route::get('login', array('uses' => 'UserController@showLogin'));
+Route::post('login', array('uses' => 'UserController@doLogin'));
+Route::get('logout', array('uses' => 'UserController@doLogout'));
+Route::get('sponsors', array('uses' => 'HomeController@showSponsors'));

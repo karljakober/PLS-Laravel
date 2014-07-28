@@ -6,16 +6,20 @@ class HomeController extends BaseController {
 
 	public function showWelcome()
 	{
-		$this->layout->content = View::make('hello');
+		if (Auth::check()) {
+			return Redirect::to('/dashboard');
+		}
+		$this->layout->content = View::make('home.welcome');
 	}
 
-	public function showLogin()
+	public function showDashboard()
 	{
-		$this->layout->content = View::make('login');
+		$this->layout->content = View::make('home.dashboard');
 	}
 
-	public function doLogin()
+	public function showSponsors()
 	{
-		// process the form
+		$this->layout->content = View::make('home.sponsors');
 	}
+
 }
