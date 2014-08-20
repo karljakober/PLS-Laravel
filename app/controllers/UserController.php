@@ -4,7 +4,7 @@ class UserController extends BaseController {
 
     protected $layout = 'layouts.master';
 
-    public function showLogin()
+    public function getLogin()
     {
         if (Auth::check()) {
             return Redirect::to('/dashboard');
@@ -12,7 +12,7 @@ class UserController extends BaseController {
         $this->layout->content = View::make('user.login');
     }
 
-    public function doLogin()
+    public function postLogin()
     {
         //validation rules
         $rules = array(
@@ -48,9 +48,20 @@ class UserController extends BaseController {
         }
     }
 
-    public function doLogout()
+    public function getLogout()
     {
         Auth::logout(); // log out
         return Redirect::to('/');
     }
+
+    public function getProfile($username) {
+        $user = User::where('username', '=', $username)->get();
+        print_r($user);
+    }
+
+    public function getSettings() {
+
+    }
+
+
 }

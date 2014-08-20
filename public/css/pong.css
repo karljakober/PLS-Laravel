@@ -175,7 +175,7 @@ a:hover {
 }
 
 .ui.segment {
-    background-color: #1C1C1C !important;
+    background-color: #252525 !important;
 }
 
 #pls > .tab.segment {
@@ -304,7 +304,9 @@ body.guide .main.container > * {
   border-bottom: none;
 }
 #pls .masthead:before {
-  background: #00B5AD url(/images/tile-bg.png) repeat fixed 0% 0%;
+  background: #00B5AD url(/img/classy-lan.jpg) repeat scroll center center;
+  background-size: contain;
+  background-position: 0px -150px;
   position: absolute;
   z-index: 1;
   width: 500%;
@@ -313,36 +315,6 @@ body.guide .main.container > * {
   left: 0px;
   content: '';
 
-  -moz-transform-origin: 50% 50%;
-  -o-transform-origin: 50% 50%;
-  -ms-transform-origin: 50% 50%;
-  transform-origin: 50% 50%;
-
-  -webkit-animation-name: masthead;
-  -moz-animation-name: masthead;
-  -o-animation-name: masthead;
-  animation-name: masthead;
-
-  -webkit-animation-duration: 80s;
-  -moz-animation-duration: 80s;
-  -ms-animation-duration: 80s;
-  -o-animation-duration: 80s;
-  animation-duration: 80s;
-
-  -webkit-animation-fill-mode: both;
-  -moz-animation-fill-mode: both;
-  -ms-animation-fill-mode: both;
-  -o-animation-fill-mode: both;
-  animation-fill-mode: both;
-
-  animation-timing-function: linear;
-  -webkit-animation-timing-function: linear;
-
-  -webkit-animation-iteration-count: infinite;
-  -moz-animation-iteration-count: infinite;
-  -ms-animation-iteration-count: infinite;
-  -o-animation-iteration-count: infinite;
-  animation-iteration-count: infinite;
 }
 @keyframes masthead {
  0% {
@@ -599,7 +571,7 @@ body.guide .main.container > * {
 #pls .swap {
   background: url(http://beta.myfav.es/images/themes/bg/subtle/subtle-handmade-paper.png) repeat;
 }
-#pls .peek {
+#pls .peekmenu {
   position: absolute;
   top: 0px;
   left: -230px;
@@ -767,19 +739,19 @@ body.guide .main.container > * {
   color: transparent;
 }
 
-#pls .peek .menu .active:nth-child(1) {
+#pls .peekmenu .menu .active:nth-child(1) {
   border-right-color: #00B9F0;
   color: #00B9F0;
 }
-#pls .peek .menu .active:nth-child(2) {
+#pls .peekmenu .menu .active:nth-child(2) {
   border-right-color: #56BB73;
   color: #56BB73;
 }
-#pls .peek .menu .active:nth-child(3) {
+#pls .peekmenu .menu .active:nth-child(3) {
   border-right-color: #EF3F49;
   color: #EF3F49;
 }
-#pls .peek .menu .active:nth-child(4) {
+#pls .peekmenu .menu .active:nth-child(4) {
   border-right-color: #A24096;
   color: #A24096;
 }
@@ -787,7 +759,7 @@ body.guide .main.container > * {
   color: #A24096;
 }
 
-#pls .peek > .menu {
+#pls .peekmenu > .menu {
   margin-left: 0px;
   width: 180px;
 }
@@ -856,18 +828,18 @@ body.guide .main.container > * {
     opacity 0.3s ease-out
   ;
 }
-#pls .sticky-wrapper.stuck .peek {
+#pls .sticky-wrapper.stuck .peekmenu {
   position: fixed;
   top: 75px;
   left: 50%;
   margin-left: -685px;
 }
-#pls.left.pushed .sticky-wrapper .peek {
+#pls.left.pushed .sticky-wrapper .peekmenu {
   margin-left: -132.5px;
   padding-left: 132.5px;
 }
 
-#pls.left.pushed .sticky-wrapper.stuck .peek {
+#pls.left.pushed .sticky-wrapper.stuck .peekmenu {
   margin-left: -817.5px;
   padding-left: 132.5px;
 }
@@ -1310,19 +1282,39 @@ body.progress .ui.progress .bar {
     margin-right: 100px;
     margin-left: 325px;
   }
+
+  #pls.index .container {
+    width: auto;
+    margin-left: 8em;
+    margin-right: 8em;
+  }
+
+  #pls.peek .container {
+    width: auto;
+    margin-right: 100px !important;
+    margin-left: 325px !important;
+  }
+
+  #pls.peek .menu > .container {
+      width: auto;
+      margin-left: 8em !important;
+      margin-right: 8em !important;
+  }
+
+
   #pls.index .container {
     margin-left: 8em;
     margin-right: 8em;
   }
-  #pls .sticky-wrapper.stuck .peek {
+  #pls .sticky-wrapper.stuck .peekmenu {
     margin-left: 0px;
     left: 95px;
   }
-  #pls.left.pushed .sticky-wrapper .peek {
+  #pls.left.pushed .sticky-wrapper .peekmenu {
     padding-left: 275px;
     margin-left: -275px;
   }
-  #pls.left.pushed .sticky-wrapper.stuck .peek {
+  #pls.left.pushed .sticky-wrapper.stuck .peekmenu {
     margin-left: 0px;
     padding-left: 275px;
   }
@@ -1477,7 +1469,7 @@ body.progress .ui.progress .bar {
   #pls .container {
     width: 1100px;
   }
-  #pls .sticky-wrapper.stuck .peek {
+  #pls .sticky-wrapper.stuck .peekmenu {
     margin-left: -780px;
   }
   #pls.left.pushed .main.menu {
@@ -1489,7 +1481,7 @@ body.progress .ui.progress .bar {
   #pls .container {
     width: 1320px;
   }
-  #pls .sticky-wrapper.stuck .peek {
+  #pls .sticky-wrapper.stuck .peekmenu {
     margin-left: -890px;
   }
 }

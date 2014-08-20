@@ -4,20 +4,22 @@ class HomeController extends BaseController {
 
 	protected $layout = 'layouts.master';
 
-	public function showWelcome()
+	public function getWelcome()
 	{
 		if (Auth::check()) {
 			return Redirect::to('/dashboard');
 		}
+
+		View::share('bodystyle', 'peek');
 		$this->layout->content = View::make('home.welcome');
 	}
 
-	public function showDashboard()
+	public function getDashboard()
 	{
 		$this->layout->content = View::make('home.dashboard');
 	}
 
-	public function showSponsors()
+	public function getSponsors()
 	{
 		$this->layout->content = View::make('home.sponsors');
 	}

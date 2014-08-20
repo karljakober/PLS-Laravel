@@ -11,7 +11,25 @@
   </div>
 </div>
 <div class="main container">
-    Dashboard
+    <div class="ui grid">
+      <div class="three column row">
+        <div class="column">
+          <div class="ui segment orange">
+            Three
+          </div>
+        </div>
+        <div class="column">
+          <div class="ui segment inverted">
+            Three
+          </div>
+        </div>
+        <div class="column">
+          <div class="ui segment orange">
+            Three
+          </div>
+        </div>
+      </div>
+    </div>
 </div>
 
 @stop
