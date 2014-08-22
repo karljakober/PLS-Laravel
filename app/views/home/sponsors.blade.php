@@ -1,3 +1,5 @@
+@section('pageTitle', 'Sponsors')
+
 @extends('layouts.master')
 
 @section('content')

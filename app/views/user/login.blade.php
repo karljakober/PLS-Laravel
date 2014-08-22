@@ -1,3 +1,5 @@
+@section('pageTitle', 'Log In')
+
 @extends('layouts.master')
     @section('content')
     <div class="main container inverted">

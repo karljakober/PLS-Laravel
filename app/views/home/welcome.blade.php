@@ -1,3 +1,5 @@
+@section('pageTitle', 'Welcome')
+
 @extends('layouts.master')
 
 @section('content')

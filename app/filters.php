@@ -13,7 +13,17 @@
 
 App::before(function($request)
 {
-	//
+	App::singleton('options', function(){
+		$alloptions = Option::all();
+		$options = array();
+		foreach ($alloptions as $option) {
+			$options[$option['option_id']] = $option;
+		}
+		return $options;
+	});
+	$options = App::make('options');
+	View::share('options', $options);
+	View::share('websiteTitle', $options['website_title']['value']);
 });
 
 

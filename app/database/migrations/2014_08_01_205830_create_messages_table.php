@@ -31,7 +31,7 @@ class CreateMessagesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('seating_charts');
+		Schema::drop('messages');
 	}
 
 }

@@ -12,7 +12,7 @@ class CreateSeatingChartsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('seating_charts', function(Blueprint $table)
+		Schema::create('seating', function(Blueprint $table)
 		{
 			$table->increments('id');
 
@@ -31,7 +31,7 @@ class CreateSeatingChartsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('seating_charts');
+		Schema::drop('seating');
 	}
 
 }

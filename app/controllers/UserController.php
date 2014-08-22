@@ -14,14 +14,8 @@ class UserController extends BaseController {
 
     public function postLogin()
     {
-        //validation rules
-        $rules = array(
-            'email'    => 'required|email',
-            'password' => 'required|alphaNum|min:5'
-        );
-
         // run validation rules on inputs
-        $validator = Validator::make(Input::all(), $rules);
+        $validator = Validator::make(Input::all(), User::$rules);
 
         //fail, redirect back to login, without password
         if ($validator->fails()) {

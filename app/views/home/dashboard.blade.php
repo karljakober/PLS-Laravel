@@ -1,3 +1,5 @@
+@section('pageTitle', 'Dashboard')
+
 @extends('layouts.master')
 
 @section('content')
