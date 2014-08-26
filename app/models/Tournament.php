@@ -1,12 +1,15 @@
 <?php
 
 class Tournament extends Eloquent {
+	protected $guarded = array();
 
-    /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
-    protected $table = 'tournaments';
-
+	public static $rules = array(
+		'lan_id' => 'required',
+		'name' => 'required',
+		'start_time' => 'required',
+		'end_time' => 'required',
+		'type' => 'required',
+		'allow_teams' => 'required',
+		'assigned_admin' => 'required'
+	);
 }

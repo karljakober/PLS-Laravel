@@ -2,8 +2,6 @@
 
 class MessageController extends BaseController {
 
-    protected $layout = 'layouts.master';
-
     public function postRegister()
     {
         $this->layout = null;

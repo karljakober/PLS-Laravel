@@ -389,7 +389,7 @@ body.guide .main.container > * {
 #pls .introduction {
   display: table-cell;
   vertical-align: top;
-  width: 100%;
+  width: 80%;
 }
 #pls .introduction h1 {
   margin-bottom: 0em;
@@ -543,6 +543,12 @@ body.guide .main.container > * {
   z-index: 500;
   width: 70px;
 }
+#pls .launchadmin.button {
+  position: fixed;
+  top: 63px;
+  z-index: 500;
+  width: 70px;
+}
 #pls.index .main.menu {
   top: 0px;
 }
@@ -553,6 +559,13 @@ body.guide .main.container > * {
   top: 96px;
 }
 #pls .launch.button .text {
+  display: inline-block;
+  display: none;
+}
+#pls.index .attached.launchadmin.button {
+  top: 96px;
+}
+#pls .launchadmin.button .text {
   display: inline-block;
   display: none;
 }
@@ -1249,6 +1262,10 @@ body.progress .ui.progress .bar {
   display: none;
 }
 
+#pls .fixed .launchadmin {
+  display: none;
+}
+
 #pls .fixed.column .sticky-wrapper {
   position: relative;
   height: 0px !important;
@@ -1340,7 +1357,13 @@ body.progress .ui.progress .bar {
   #pls .attached.launch.button {
     display: none;
   }
+  #pls .attached.launchadmin.button {
+    display: none;
+  }
   #pls .fixed .launch {
+    display: inline-block;
+  }
+  #pls .fixed .launchadmin {
     display: inline-block;
   }
   #pls .sticky-wrapper {
@@ -1556,4 +1579,8 @@ input {
     -moz-opacity: 0.5;
     -khtml-opacity: 0.5;
     opacity: 0.5;
+}
+
+.ui.attached.left.button {
+    right: 0px !important;
 }

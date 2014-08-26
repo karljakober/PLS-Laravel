@@ -31,8 +31,11 @@ semantic.ready = function() {
       $pageTabMenu      = $('body > .tab.segment .tabular.menu'),
       $pageTabs         = $('body > .tab.segment .menu .item'),
       $menu             = $('#menu'),
+      $adminmenu        = $('#adminmenu'),
       $hideMenu         = $('#menu .hide.item'),
+      $adminHideMenu    = $('#adminmenu .hide.item'),
       $sidebarButton    = $('.attached.launch.button'),
+      $adminSidebarButton = $('.attached.launchadmin.button'),
       $menuPopup        = $('.ui.main.menu .popup.item'),
       $menuDropdown     = $('.ui.main.menu .dropdown'),
       $waypoints        = $peek.closest('.tab, .container').find('h2').first().siblings('h2').addBack(),
@@ -72,6 +75,34 @@ semantic.ready = function() {
           }
         },
         menu: {
+          mouseenter: function() {
+            $(this)
+              .stop()
+              .animate({
+                width: '155px'
+              }, 300, function() {
+                $(this).find('.text').show();
+              })
+            ;
+          },
+          mouseleave: function(event) {
+            $(this).find('.text').hide();
+            $(this)
+              .stop()
+              .animate({
+                width: '70px'
+              }, 300)
+            ;
+          }
+        },
+        adminmenu: {
+          click: function() {
+              $(this).toggle(function () {
+                    $(this).css({right: "155px"});
+                }, function () {
+                    $(this).css({right: "0px"});
+                });
+          },
           mouseenter: function() {
             $(this)
               .stop()
@@ -207,9 +238,17 @@ semantic.ready = function() {
     .on('mouseenter', handler.menu.mouseenter)
     .on('mouseleave', handler.menu.mouseleave)
   ;
+  $adminSidebarButton
+    .on('mouseenter', handler.adminmenu.mouseenter)
+    .on('mouseleave', handler.adminmenu.mouseleave)
+  ;
   $menu
     .sidebar('attach events', '.launch.button, .view-ui.button, .launch.item')
     .sidebar('attach events', $hideMenu, 'hide')
+  ;
+  $adminmenu
+    .sidebar('attach events', '.launchadmin.button, .view-ui.button, .launchadmin.item')
+    .sidebar('attach events', $adminHideMenu, 'hide')
   ;
   $waypoints
     .waypoint({

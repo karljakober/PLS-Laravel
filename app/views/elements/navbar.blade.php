@@ -42,3 +42,9 @@
   <span class="text">Chat</span>
 </div>
 @endif
+@if(Auth::check() && Auth::user()->admin)
+<div class="ui orange huge launchadmin left attached button" data-variation=".right">
+  <i class="icon list layout"></i>
+  <span class="text">Admin</span>
+</div>
+@endif

@@ -25,16 +25,30 @@ Route::get('/logout', array('uses' => 'UserController@getLogout'));
 Route::get('/settings', array('uses' => 'UserController@getSettings'));
 Route::any('/user/{username}', array('as' => 'user', 'uses' => 'UserController@getProfile'));
 
+Route::resource('users', 'UserController');
+
 //Controller Routes
 Route::controller('messages', 'MessageController');
-Route::controller('tournaments', 'TournamentController');
-Route::controller('servers', 'ServerController');
 Route::controller('news', 'NewsController');
-Route::controller('seating', 'SeatingController');
 
 //Admin Control
 Route::group(array('prefix' => 'admin', 'before' => 'admin'), function()
 {
-    Route::get('/news', array('uses' => 'NewsController@getAdminIndex'));
-    Route::get('/news/post', array('uses' => 'NewsController@getAdminPost'));
+    Route::resource('news', 'admin\\NewsController');
+    Route::resource('servers', 'admin\\ServersController');
+
+    //Route::get('/news', array('uses' => 'NewsController@getAdminIndex'));
+    //Route::get('/news/post', array('uses' => 'NewsController@getAdminPost'));
 });
+
+
+Route::resource('news', 'NewsController');
+
+//Generated
+Route::resource('servers', 'ServersController');
+Route::resource('tournaments', 'TournamentsController');
+
+
+Route::resource('seating_charts', 'Seating_chartsController');
+
+Route::resource('seatingcharts', 'SeatingchartsController');

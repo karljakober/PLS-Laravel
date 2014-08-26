@@ -101,7 +101,9 @@ Route::filter('csrf', function()
 
 Route::filter('admin', function()
 {
-	if (!Auth::user()->admin) {
+	if (Auth::check() && !Auth::user()->admin) {
 		return Response::make('Unauthorized', 401);
+	} else if (!Auth::check()) {
+		return Redirect::to('/');
 	}
 });

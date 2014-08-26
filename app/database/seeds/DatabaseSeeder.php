@@ -13,7 +13,11 @@ class DatabaseSeeder extends Seeder {
 
 		$this->call('UserTableSeeder');
 		$this->call('OptionTableSeeder');
-
+		$this->call('NewsTableSeeder');
+		$this->call('ServersTableSeeder');
+		$this->call('TournamentsTableSeeder');
+		$this->call('SeatingchartsTableSeeder');
+		$this->call('LansTableSeeder');
 	}
 
 }

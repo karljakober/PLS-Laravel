@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
-class CreateNewsTable extends Migration {
+class CreateSeatingChartsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,16 +12,15 @@ class CreateNewsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('news', function(Blueprint $table)
-		{
+		Schema::create('seating_charts', function(Blueprint $table) {
 			$table->increments('id');
-			$table->text('content');
-			$table->integer('author_id');
-			$table->string('title', 255);
-
+			$table->string('name');
+			$table->integer('width');
+			$table->integer('height');
 			$table->timestamps();
 		});
 	}
+
 
 	/**
 	 * Reverse the migrations.
@@ -30,7 +29,7 @@ class CreateNewsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('news');
+		Schema::drop('seating_charts');
 	}
 
 }

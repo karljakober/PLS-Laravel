@@ -1,12 +1,12 @@
 <?php
 
 class Server extends Eloquent {
+	protected $guarded = array();
 
-    /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
-    protected $table = 'servers';
-
+	public static $rules = array(
+		'lan_id' => 'required',
+		'name' => 'required',
+		'address' => 'required',
+		'user_id' => 'required'
+	);
 }

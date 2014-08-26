@@ -2,16 +2,25 @@
 
 class HomeController extends BaseController {
 
-	protected $layout = 'layouts.master';
-
 	public function getWelcome()
 	{
+		if(!Lan::active()) {
+			$upcomingLan = Lan::next();
+			if (!$upcomingLan) {
+				$previousLan = Lan::previous();
+			}
+		} else {
+			$activeLan = Lan::active();
+		}
+
 		if (Auth::check()) {
 			return Redirect::to('/dashboard');
 		}
 
+		$news = News::orderBy('created_at', 'desc')->get();
+
 		View::share('bodystyle', 'peek');
-		$this->layout->content = View::make('home.welcome');
+		return View::make('home.welcome', compact('upcomingLan', 'previousLan', 'activeLan', 'news'));
 	}
 
 	public function getDashboard()

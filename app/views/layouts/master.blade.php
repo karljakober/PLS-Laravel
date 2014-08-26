@@ -36,6 +36,10 @@
         @include('elements.sidebar')
     @endif
 
+    @if(Auth::check() && Auth::user()->admin)
+        @include('elements.admin_panel')
+    @endif
+
     @include('elements.navbar')
 
     @yield('content')
