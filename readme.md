@@ -1,25 +1,41 @@
-## Laravel PHP Framework
+## Pong Lan Software
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/downloads.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+[![Build Status](https://travis-ci.org/KarlJakober/PLS-Laravel.svg)](https://travis-ci.org/KarlJakober/PLS-Laravel)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, and caching.
+## Installation
 
-Laravel aims to make the development process a pleasing one for the developer without sacrificing application functionality. Happy developers make the best code. To this end, we've attempted to combine the very best of what we have seen in other web frameworks, including frameworks implemented in other languages, such as Ruby on Rails, ASP.NET MVC, and Sinatra.
+Clone repo
+composer install
+create pls_config.php file inside app/config directory
+contents below, modify to fit your database information
+```
+<?php
+define('MYSQL_USER', 'root');
+define('MYSQL_PASSWORD', '');
+define('MYSQL_HOST', 'localhost');
+define('MYSQL_DATABASE', 'pls');
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+```
+Ensure correct database is made
+```
+php artisan migrate
+```
+```
+php artisan db:seed
+```
 
-## Official Documentation
+Make sure to reset migrations and reseed your database every update (during development)
 
-Documentation for the entire framework can be found on the [Laravel website](http://laravel.com/docs).
+```
+php artisan migrate:reset
+php artisan db:seed
+```
+If you encounter an error, you may need to manually drop all tables in the database and run
+```
+php artisan migrate
+```
 
-### Contributing To Laravel
-
-**All issues and pull requests should be filed on the [laravel/framework](http://github.com/laravel/framework) repository.**
-
-### License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+if you are using php 5.4 you can start phps built in server for testing purposes
+```
+php artisan serve
+```
