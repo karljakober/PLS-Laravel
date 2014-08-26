@@ -5,7 +5,10 @@
 ## Installation
 
 Clone repo
-composer install
+```
+cd PLS-Laravel/
+sudo composer install
+```
 create pls_config.php file inside app/config directory
 contents below, modify to fit your database information
 ```
