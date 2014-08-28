@@ -21,6 +21,8 @@ Route::get('/sponsors', array('uses' => 'HomeController@getSponsors'));
 //Outside of controller url Routes
 Route::get('/login', array('uses' => 'UserController@getLogin'));
 Route::post('/login', array('uses' => 'UserController@postLogin'));
+Route::get('/register', array('uses' => 'UserController@getRegister'));
+Route::post('/register', array('uses' => 'UserController@postRegister'));
 Route::get('/logout', array('uses' => 'UserController@getLogout'));
 Route::get('/settings', array('uses' => 'UserController@getSettings'));
 Route::any('/user/{username}', array('as' => 'user', 'uses' => 'UserController@getProfile'));

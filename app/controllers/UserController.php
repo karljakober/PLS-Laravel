@@ -11,13 +11,19 @@ class UserController extends BaseController {
         if (Auth::check()) {
             return Redirect::to('/dashboard');
         }
-        $this->layout->content = View::make('user.login');
+        return View::make('user.login');
     }
 
     public function postLogin()
     {
+
+        $rules = array(
+            'email'    => 'required|email',
+            'password' => 'required|alphaNum|min:5'
+        );
+
         // run validation rules on inputs
-        $validator = Validator::make(Input::all(), User::$rules);
+        $validator = Validator::make(Input::all(), $rules);
 
         //fail, redirect back to login, without password
         if ($validator->fails()) {
@@ -42,6 +48,57 @@ class UserController extends BaseController {
             }
 
         }
+    }
+
+    public function getRegister()
+    {
+
+        return View::make('user.register');
+
+    }
+
+    public function postRegister()
+    {
+
+        $rules = array(
+            'email'    => 'required|email|unique:users',
+            'password' => 'required|alphaNum|min:5|confirmed',
+            'username' => 'required|alphaNum|min:3|unique:users',
+            'password_confirmation'=>'required|alphaNum|min:5'
+        );
+
+        // run validation rules on inputs
+        $validator = Validator::make(Input::all(), $rules);
+        //fail, redirect back to login, without password
+        if ($validator->fails()) {
+            return Redirect::to('register')
+                ->withErrors($validator)
+                ->withInput(Input::except('password', 'password_confirmation'));
+        } else {
+            // success, create user data
+            $userdata = array(
+                'email' 	=> Input::get('email'),
+                'password' 	=> Input::get('password')
+            );
+
+            $user = new User;
+            $user->username = Input::get('username');
+            $user->email = Input::get('email');
+            $user->password = Hash::make(Input::get('password'));
+            $user->save();
+
+            // login
+            if (Auth::attempt($userdata)) {
+                // validation successful!
+                // redirect them to the dashboard
+                return Redirect::to('dashboard');
+            } else {
+                // validation not successful, send back to form
+                return Redirect::to('login');
+            }
+
+        }
+
     }
 
     public function getLogout()
