@@ -2,7 +2,16 @@
 
 class UserController extends BaseController {
 
-    public function getIndex() {
+    protected $user;
+
+    public function __construct(User $user)
+    {
+        $this->beforeFilter('csrf', array('on' => 'post'));
+        $this->user = $user;
+    }
+
+    public function getIndex()
+    {
 
     }
 
@@ -16,7 +25,6 @@ class UserController extends BaseController {
 
     public function postLogin()
     {
-
         $rules = array(
             'email'    => 'required|email',
             'password' => 'required|alphaNum|min:5'
@@ -41,7 +49,7 @@ class UserController extends BaseController {
             if (Auth::attempt($userdata)) {
                 // validation successful!
                 // redirect them to the dashboard
-                return Redirect::to('dashboard');
+                return Redirect::to('dashboard')->with('flash_success', 'Logged in successfully. Welcome!');
             } else {
                 // validation not successful, send back to form
                 return Redirect::to('login');
@@ -52,14 +60,11 @@ class UserController extends BaseController {
 
     public function getRegister()
     {
-
         return View::make('user.register');
-
     }
 
     public function postRegister()
     {
-
         $rules = array(
             'email'    => 'required|email|unique:users',
             'password' => 'required|alphaNum|min:5|confirmed',
@@ -108,7 +113,7 @@ class UserController extends BaseController {
     }
 
     public function getProfile($username) {
-        $user = User::where('username', '=', $username)->get();
+        $user = $this->user->where('username', '=', $username)->get();
         print_r($user);
     }
 

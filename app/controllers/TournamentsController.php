@@ -12,6 +12,7 @@ class TournamentsController extends BaseController {
 	public function __construct(Tournament $tournament)
 	{
 		$this->tournament = $tournament;
+		$this->beforeFilter('auth', array('only' => array('postRegister', 'postAdd')));
 	}
 
 	/**
@@ -24,39 +25,6 @@ class TournamentsController extends BaseController {
 		$tournaments = $this->tournament->all();
 
 		return View::make('tournaments.index', compact('tournaments'));
-	}
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		return View::make('tournaments.create');
-	}
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		$input = Input::all();
-		$validation = Validator::make($input, Tournament::$rules);
-
-		if ($validation->passes())
-		{
-			$this->tournament->create($input);
-
-			return Redirect::route('tournaments.index');
-		}
-
-		return Redirect::route('tournaments.create')
-			->withInput()
-			->withErrors($validation)
-			->with('message', 'There were validation errors.');
 	}
 
 	/**
@@ -113,19 +81,6 @@ class TournamentsController extends BaseController {
 			->withInput()
 			->withErrors($validation)
 			->with('message', 'There were validation errors.');
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		$this->tournament->find($id)->delete();
-
-		return Redirect::route('tournaments.index');
 	}
 
 }

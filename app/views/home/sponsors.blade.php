@@ -1,17 +1,11 @@
 @section('pageTitle', 'Sponsors')
 
+@section('pageHeader', 'Sponsors')
+
 @extends('layouts.master')
 
 @section('content')
-<div class="ui segment">
-  <div class="container">
-    <div class="introduction">
-      <h1 class="ui header inverted">
-        Sponsors
-      </h1>
-    </div>
-  </div>
-</div>
+
 <div class="main container">
     <p>
         <img class="aligncenter size-full wp-image-251" title="Computer Power User" src="http://pong.uwstout.edu/wp-content/uploads/2010/03/1.jpg" alt="" width="468" height="60" /><br />

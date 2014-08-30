@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder {
 		$this->call('ServersTableSeeder');
 		$this->call('TournamentsTableSeeder');
 		$this->call('SeatingchartsTableSeeder');
+		$this->call('SeatingcharttilesTableSeeder');
 		$this->call('LansTableSeeder');
 	}
 

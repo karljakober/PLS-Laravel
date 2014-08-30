@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateSeatingChartsTable extends Migration {
+class CreateSeatingchartsTable extends Migration {
 
 	/**
 	 * Run the migrations.

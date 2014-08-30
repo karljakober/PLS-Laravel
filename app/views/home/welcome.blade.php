@@ -13,14 +13,20 @@
       </div>
       <div class="ui orange segment">
           @if (isset($activeLan))
-              Current Lan<br />
-              October 4th (Friday) from 4pm to the 6th (Sunday) at 4PM (48 hours)<br />
-              19 days, 11 hours, 43 mins, 11 secs<br />
-              Early setup Friday at 12pm!<br />
+              <h3>Current Lan</h3>
+              <p>{{ $activeLan->name }}<p>
           @elseif (isset($upcomingLan))
-              Upcoming Lan
+              <h3>Upcoming Lan</h3>
+              <p>{{ $upcomingLan->name }}<p>
           @elseif (isset($previousLan))
-              Past Lan
+              <h3>Past Lan</h3>
+              <p>{{ $previousLan->name }}<p>
+          @endif
+          <h5>{{ $lantext }}</h5>
+          @if (!isset($previousLan))
+          <a class="item" href="{{ URL::to('seatingchart') }}">
+              <div class="ui orange button">Need a seat?</div>
+          </a>
           @endif
       </div>
     </div>

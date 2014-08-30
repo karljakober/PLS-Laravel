@@ -12,6 +12,7 @@ class ServersController extends BaseController {
 	public function __construct(Server $server)
 	{
 		$this->server = $server;
+		$this->beforeFilter('auth', array('only' => array('create', 'store', 'edit', 'update', 'destroy')));
 	}
 
 	/**

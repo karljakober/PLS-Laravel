@@ -1,11 +1,12 @@
 @section('pageTitle', 'Log In')
 
+@section('pageHeader', 'Log In')
+
 @extends('layouts.master')
     @section('content')
     <div class="main container inverted">
         <div class="ui fixed page grid">
               <div class="sixteen wide column">
-                <h1>Login</h1>
                 {{ Form::open(array('url' => 'login')) }}
                 <div class="ui form segment inverted">
                   <div class="required field">

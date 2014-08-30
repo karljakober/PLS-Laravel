@@ -25,6 +25,12 @@
   <link href="/css/nanoscroller.css" rel="stylesheet">
 
   <script type="text/javascript">
+    @if (Session::has('flash_warning') || Session::has('flash_success'))
+      $(".delete.icon").bind("click", function(e) {
+          e.preventDefault();
+          $(this).parent().slideup();
+      });
+    @endif
   $(function() {
     $(".nano").nanoScroller();
   });
@@ -42,12 +48,42 @@
 
     @include('elements.navbar')
 
+    @if (array_key_exists('pageHeader', View::getSections()))
+        <div class="ui segment">
+            <div class="container">
+                <div class="introduction">
+                    <h1 class="ui header inverted">
+                        @yield('pageHeader')
+                    </h1>
+                </div>
+            </div>
+        </div>
+    @endif
+
+    @if (Session::has('flash_warning'))
+    <div class="flash container">
+        <div class="ui red inverted segment">
+            <p>{{ Session::get('flash_warning') }}</p>
+            <i class="delete icon"></i>
+        </div>
+    </div>
+    @endif
+
+    @if (Session::has('flash_success'))
+    <div class="flash container">
+        <div class="ui green inverted segment">
+            <p>{{ Session::get('flash_success') }} <i id="deleteflash" class="delete icon right"></i> </p>
+
+        </div>
+    </div>
+    @endif
+
     @yield('content')
 
     @if(Auth::check())
-        <script src="/js/json2.js"></script>
+        <!--<script src="/js/json2.js"></script>
         <script src="/js/socket.io.js"></script>
-        <script src="/js/nodeClient.js"></script>
+        <script src="/js/nodeClient.js"></script>-->
     @endif
 
     <script src="/js/jquery.nanoscroller.js"></script>

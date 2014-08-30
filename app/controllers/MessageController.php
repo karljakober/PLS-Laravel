@@ -2,6 +2,11 @@
 
 class MessageController extends BaseController {
 
+    public function __construct()
+    {
+        $this->beforeFilter('auth', array('only' => array('postRegister', 'postAdd')));
+    }
+
     public function postRegister()
     {
         $this->layout = null;
@@ -14,6 +19,7 @@ class MessageController extends BaseController {
     public function postAdd()
     {
         $this->layout = null;
+
         $message = new Message;
 
         $message->username = Auth::user()->username;

@@ -12,7 +12,7 @@
       <a class="item" href="{{ URL::to('sponsors') }}">
         <i class="dollar icon"></i> Sponsors
       </a>
-      <a class="item" href="{{ URL::to('seating') }}">
+      <a class="item" href="{{ URL::to('seatingchart') }}">
         <i class="users icon"></i> Seating Chart
       </a>
       <div class="right menu">

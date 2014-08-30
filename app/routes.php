@@ -11,14 +11,29 @@
 |
 */
 
-//Base Pages
+//Admin Control
+Route::group(array('prefix' => 'admin', 'before' => 'admin'), function()
+{
+    Route::resource('news', 'admin\\NewsController');
+    Route::resource('servers', 'admin\\ServersController');
+});
+
+/*Home:
+    welcome
+    dashboard - auth
+    sponsors
+*/
 Route::get('/', array('uses' => 'HomeController@getWelcome'));
 Route::get('/dashboard', array('uses' => 'HomeController@getDashboard'));
-
-//Static Pages
 Route::get('/sponsors', array('uses' => 'HomeController@getSponsors'));
 
-//Outside of controller url Routes
+/*Users:
+    login
+    register
+    logout
+    profile
+    settings - auth
+*/
 Route::get('/login', array('uses' => 'UserController@getLogin'));
 Route::post('/login', array('uses' => 'UserController@postLogin'));
 Route::get('/register', array('uses' => 'UserController@getRegister'));
@@ -27,30 +42,31 @@ Route::get('/logout', array('uses' => 'UserController@getLogout'));
 Route::get('/settings', array('uses' => 'UserController@getSettings'));
 Route::any('/user/{username}', array('as' => 'user', 'uses' => 'UserController@getProfile'));
 
-Route::resource('users', 'UserController');
-
-//Controller Routes
-Route::controller('messages', 'MessageController');
-Route::controller('news', 'NewsController');
-
-//Admin Control
-Route::group(array('prefix' => 'admin', 'before' => 'admin'), function()
-{
-    Route::resource('news', 'admin\\NewsController');
-    Route::resource('servers', 'admin\\ServersController');
-
-    //Route::get('/news', array('uses' => 'NewsController@getAdminIndex'));
-    //Route::get('/news/post', array('uses' => 'NewsController@getAdminPost'));
-});
-
-
-Route::resource('news', 'NewsController');
-
-//Generated
+/*Servers:
+    index
+    create - auth
+    edit - auth
+    delete - auth
+    view
+*/
 Route::resource('servers', 'ServersController');
-Route::resource('tournaments', 'TournamentsController');
 
+/*Tournaments:
+    index
+    edit - auth (for assigned tournament organizers)
+    update - auth (for assigned tournament organizers)
+*/
+Route::resource('tournaments', 'TournamentsController', array('except' => array('create', 'store', 'destroy')));
 
-Route::resource('seating_charts', 'Seating_chartsController');
+/*SeatingChart:
+    index
+    sit - auth
+    stand - auth
+*/
+Route::controller('seatingchart', 'SeatingChartsController');
 
-Route::resource('seatingcharts', 'SeatingchartsController');
+/*Messages:
+    postRegister - auth
+    postMessage - auth
+*/
+Route::controller('messages', 'MessageController');
