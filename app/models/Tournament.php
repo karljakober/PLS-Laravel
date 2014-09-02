@@ -12,4 +12,9 @@ class Tournament extends Eloquent {
 		'allow_teams' => 'required',
 		'assigned_admin' => 'required'
 	);
+
+    public function user()
+    {
+        return $this->belongsTo('User', 'assigned_admin');
+    }
 }

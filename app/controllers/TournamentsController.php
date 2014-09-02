@@ -24,7 +24,15 @@ class TournamentsController extends BaseController {
 	{
 		$tournaments = $this->tournament->all();
 
-		return View::make('tournaments.index', compact('tournaments'));
+		$inlist = false;
+		foreach ($tournaments as $tournament)
+		{
+		    if (Auth::check() && $tournament->user->id == Auth::user()->id) {
+				$inlist = true;
+			}
+		}
+
+		return View::make('tournaments.index', compact('tournaments', 'inlist'));
 	}
 
 	/**

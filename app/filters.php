@@ -24,6 +24,17 @@ App::before(function($request)
 	$options = App::make('options');
 	View::share('options', $options);
 	View::share('websiteTitle', $options['website_title']['value']);
+
+	$adminmenu = array(
+		'Users' => 'users',
+		'Lans' => 'lans',
+		'Tournaments' => 'tournaments',
+		'News' => 'news',
+		'SeatingCharts' => 'seatingchart',
+		'Servers' => 'servers',
+	);
+
+	View::share('adminmenu', $adminmenu);
 });
 
 

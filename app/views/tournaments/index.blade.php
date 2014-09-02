@@ -23,8 +23,10 @@
 						<th>Start_time</th>
 						<th>End_time</th>
 						<th>Type</th>
-						<th>Assigned_admin</th>
-						<th>&nbsp;</th>
+						<th>Tournament Admin</th>
+						@if ($inlist)
+							<th>&nbsp;</th>
+						@endif
 					</tr>
 				</thead>
 
@@ -35,13 +37,16 @@
 							<td>{{{ $tournament->start_time }}}</td>
 							<td>{{{ $tournament->end_time }}}</td>
 							<td>{{{ $tournament->type }}}</td>
-							<td>{{{ $tournament->assigned_admin }}}</td>
+							<td>{{{ $tournament->user->username }}}</td>
+							@if ($inlist)
 		                    <td>
-		                        {{ Form::open(array('style' => 'display: inline-block;', 'method' => 'DELETE', 'route' => array('tournaments.destroy', $tournament->id))) }}
-		                            {{ Form::submit('Delete', array('class' => 'btn btn-danger')) }}
-		                        {{ Form::close() }}
+								@if ($inlist && isset($tournament->user) && $tournament->user->id == Auth::user()->id)
 		                        {{ link_to_route('tournaments.edit', 'Edit', array($tournament->id), array('class' => 'btn btn-info')) }}
-		                    </td>
+		                   		@else
+								&nbsp;
+								@endif
+							</td>
+							@endif
 						</tr>
 					@endforeach
 				</tbody>

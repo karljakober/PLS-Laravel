@@ -11,9 +11,16 @@
 |
 */
 
+//Protect everything from csrf
+Route::when('*', 'csrf', array('post', 'put', 'delete'));
+
 //Admin Control
 Route::group(array('prefix' => 'admin', 'before' => 'admin'), function()
 {
+    Route::resource('users', 'admin\\UserController');
+    Route::resource('lans', 'admin\\LansController');
+    Route::resource('tournaments', 'admin\\TournamentsController');
+    Route::resource('seatingchart', 'admin\\SeatingChartsController');
     Route::resource('news', 'admin\\NewsController');
     Route::resource('servers', 'admin\\ServersController');
 });

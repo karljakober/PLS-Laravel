@@ -1568,3 +1568,28 @@ input {
 .delete.icon:hover {
   opacity: 1;
 }
+
+h1.nogap,
+h2.nogap,
+h3.nogap,
+h4.nogap,
+h5.nogap {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+h1.centerheader,
+h2.centerheader,
+h3.centerheader,
+h4.centerheader,
+h5.centerheader {
+  text-align:center;
+}
+
+.ui.orange.progress .bar {
+    background-color: #ff851b;
+}
+
+.ui.progress {
+    background-color: #333333;
+}

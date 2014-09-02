@@ -19,7 +19,7 @@ class SeatingChartsController extends BaseController {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function getIndex()
 	{
 		if(!Lan::active()) {
 			$lan = Lan::next();
