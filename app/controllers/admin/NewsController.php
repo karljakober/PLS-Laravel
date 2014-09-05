@@ -20,7 +20,12 @@ class NewsController extends \BaseController {
     */
     public function create()
     {
-        return \View::make('news.admin.create');
+        $users = \User::all();
+        $user_selector = array();
+        foreach ($users as $user) {
+            $user_selector[$user->id] = $user->username . " - " . $user->email;
+        }
+        return \View::make('news.admin.create', compact('user_selector'));
     }
 
     /**
@@ -30,17 +35,17 @@ class NewsController extends \BaseController {
     */
     public function store()
     {
-        $input = Input::all();
-        $validation = Validator::make($input, News::$rules);
+        $input = \Input::all();
+        $validation = \Validator::make($input, \News::$rules);
 
         if ($validation->passes())
         {
             \News::create($input);
 
-            return Redirect::route('news.admin.index');
+            return \Redirect::route('admin.news.index');
         }
 
-        return Redirect::route('news.admin.create')
+        return \Redirect::route('admin.news.create')
             ->withInput()
             ->withErrors($validation)
             ->with('message', 'There were validation errors.');
@@ -55,8 +60,7 @@ class NewsController extends \BaseController {
     public function show($id)
     {
         $news = \News::findOrFail($id);
-
-        return View::make('news.admin.show', compact('news'));
+        return \View::make('news.admin.show', compact('news'));
     }
 
     /**
@@ -71,10 +75,16 @@ class NewsController extends \BaseController {
 
         if (is_null($news))
         {
-            return Redirect::route('admin.news.index');
+            return \Redirect::route('admin.news.index');
         }
 
-        return View::make('news.admin.edit', compact('news'));
+
+        $users = \User::all();
+        $user_selector = array();
+        foreach ($users as $user) {
+            $user_selector[$user->id] = $user->username . " - " . $user->email;
+        }
+        return \View::make('news.admin.edit', compact('news', 'user_selector'));
     }
 
     /**
@@ -85,18 +95,18 @@ class NewsController extends \BaseController {
     */
     public function update($id)
     {
-        $input = array_except(Input::all(), '_method');
-        $validation = Validator::make($input, \News::$rules);
+        $input = array_except(\Input::all(), '_method');
+        $validation = \Validator::make($input, \News::$rules);
 
         if ($validation->passes())
         {
             $news = \News::find($id);
             $news->update($input);
 
-            return Redirect::route('admin.news.show', $id);
+            return \Redirect::route('admin.news.show', $id);
         }
 
-        return Redirect::route('admin.news.edit', $id)
+        return \Redirect::route('admin.news.edit', $id)
             ->withInput()
             ->withErrors($validation)
             ->with('message', 'There were validation errors.');
@@ -111,7 +121,6 @@ class NewsController extends \BaseController {
     public function destroy($id)
     {
         \News::find($id)->delete();
-
-        return Redirect::route('admin.news.index');
+        return \Redirect::route('admin.news.index');
     }
 }

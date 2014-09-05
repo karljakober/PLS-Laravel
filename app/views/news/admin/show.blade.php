@@ -4,32 +4,31 @@
 
 @section('content')
 
-<h1>Show News</h1>
 
-<p>{{ link_to_route('admin.news.index', 'Return to All news', null, array('class'=>'btn btn-lg btn-primary')) }}</p>
+<div class="ui segment">
+    <div class="container">
+        <div class="introduction">
+            <h1 class="ui header inverted">
+                Preview News : Admin
+            </h1>
+        </div>
+    </div>
+</div>
+<div class="main container inverted">
+    <div class="ui fixed page grid">
+        <div class="sixteen wide column">
+            <div class="ui message inverted">
+                <h3>{{{ $news->title }}} - Posted by {{ $news->user->username }} {{ $news->created_at }}</h3>
+                <p>{{ $news->content }}</p>
+            </div>
+            {{ HTML::decode(link_to_route('admin.news.index', '<i class="arrow left icon"></i>', null, array('class' => 'ui orange button' ))) }}
+            {{ Form::open(array('style' => 'display: inline-block;', 'method' => 'DELETE', 'route' => array('admin.news.destroy', $news->id))) }}
+                {{ Form::submit('Delete', array('class' => 'ui button red')) }}
+            {{ Form::close() }}
+            {{ link_to_route('admin.news.edit', 'Edit', array($news->id), array('class' => 'ui button orange')) }}
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Content</th>
-                <th>Author_id</th>
-                <th>Title</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        <tr>
-            <td>{{{ $news->content }}}</td>
-                    <td>{{{ $news->author_id }}}</td>
-                    <td>{{{ $news->title }}}</td>
-                    <td>
-                        {{ Form::open(array('style' => 'display: inline-block;', 'method' => 'DELETE', 'route' => array('admin.news.destroy', $news->id))) }}
-                            {{ Form::submit('Delete', array('class' => 'btn btn-danger')) }}
-                        {{ Form::close() }}
-                        {{ link_to_route('admin.news.edit', 'Edit', array($news->id), array('class' => 'btn btn-info')) }}
-                    </td>
-        </tr>
-    </tbody>
-</table>
+        </div>
+    </div>
+</div>
 
 @stop

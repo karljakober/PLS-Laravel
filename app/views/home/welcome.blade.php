@@ -43,7 +43,7 @@
         </div>
     </div>
     @foreach($news as $article)
-    <h2>{{{ $article->title }}}</h2>
+    <h2>{{{ $article->title }}} - {{ link_to_route('user', $article->user->username, array($article->user->username)) }} {{ $article->created_at }}</h2>
     <div class="ui message inverted">
         {{ $article->content }}
     </div>

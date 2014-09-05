@@ -12,14 +12,14 @@
                   <div class="required field">
                     {{ Form::label('email', 'Email Address') }}
                     <div class="ui left labeled icon input">
-                      {{ Form::text('email', Input::old('email'), array('placeholder' => 'Email')) }}
+                      {{ Form::text('email', Input::old('email'), array('placeholder' => 'Email', 'class' => 'opaque')) }}
                       <i class="user icon"></i>
                     </div>
                   </div>
                   <div class="required field">
                     {{ Form::label('password', 'Password') }}
                     <div class="ui left labeled icon input">
-                      {{ Form::password('password') }}
+                      {{ Form::password('password', array('class' => 'opaque')) }}
                       <i class="lock icon"></i>
                     </div>
                   </div>
@@ -36,7 +36,7 @@
                     </ul>
                   </div>
                   @endif
-                  {{ Form::submit('Log In!', ['class' => 'ui submit button']) }}
+                  {{ Form::submit('Log In!', ['class' => 'ui orange submit button']) }}
                 </div>
                 {{ Form::close() }}
             </div>

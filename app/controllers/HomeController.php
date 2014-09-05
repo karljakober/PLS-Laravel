@@ -70,6 +70,10 @@ class HomeController extends BaseController {
 			$start_time = $start_time->format('Y-m-d H:i:s');
 		}
 
+		if ($progress > 100) {
+			$progress = 100;
+		}
+
 		$this->layout->content = View::make('home.dashboard', compact('end_time', 'start_time', 'progress'));
 	}
 
