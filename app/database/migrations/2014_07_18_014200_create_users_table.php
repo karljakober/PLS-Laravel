@@ -21,9 +21,9 @@ class CreateUsersTable extends Migration {
 			$table->string('password', 64);
 			$table->boolean('admin')->default(false);
 
-			$table->string('twitch_id', 255);
-			$table->string('steam_id', 255);
-			$table->string('forum_id', 255);
+			$table->string('twitch_id', 255)->nullable();
+			$table->string('steam_id', 255)->nullable();
+			$table->string('forum_id', 255)->nullable();
 
 			$table->rememberToken();
 
