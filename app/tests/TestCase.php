@@ -10,10 +10,21 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase {
 	public function createApplication()
 	{
 		$unitTesting = true;
-
 		$testEnvironment = 'testing';
-
 		return require __DIR__.'/../../bootstrap/start.php';
 	}
+	
+	public function setUp()
+    {
+        parent::setUp();
+        $this->prepareForTests();
+    }
+    
+    private function prepareForTests()
+    {
+        Artisan::call('migrate');
+        Artisan::call('db:seed');
+        Mail::pretend(true);
+    }
 
 }

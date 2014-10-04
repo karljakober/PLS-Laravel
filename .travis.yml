@@ -11,9 +11,6 @@ before_script:
   - echo "<?php define('MYSQL_HOST', '0.0.0.0'); define('MYSQL_USER', 'travis'); define('MYSQL_PASSWORD', ''); define('MYSQL_DATABASE', 'pls_test');" > ./app/config/pls_config.php
   - travis_retry composer self-update
   - travis_retry composer install --no-interaction --prefer-source --dev
-  - travis_retry php artisan asset:publish --env=testing
-  - travis_retry php artisan migrate -n
-  - travis_retry php artisan db:seed -n
 
 script:
   - mkdir -p build/logs
