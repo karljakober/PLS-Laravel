@@ -12,6 +12,8 @@ before_script:
   - travis_retry composer self-update
   - travis_retry composer install --no-interaction --prefer-source --dev
   - travis_retry php artisan asset:publish --env=testing
+  - travis_retry php artisan migrate -n
+  - travis_retry php artisan db:seed -n
 
 script:
   - mkdir -p build/logs
