@@ -11,10 +11,6 @@
 |
 */
 
-//Protect everything from csrf
-Route::when('admin/seatingchart/store', null, array('post'));
-Route::when('*', 'csrf', array('post', 'put', 'delete'));
-
 //Admin Control
 Route::group(array('prefix' => 'admin', 'before' => 'admin'), function()
 {

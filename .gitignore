@@ -9,3 +9,4 @@ Thumbs.db
 
 /app/config/pls_config.php
 /node_modules
+/public/phpmyadmin

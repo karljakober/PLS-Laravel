@@ -13,7 +13,6 @@
     .hover { background-color: rgba(0,0,0,0.1) !important; }
     .selected { background-color: none; }
 
-    .eraser { background-color: rgba(0,0,0,0.5); }
     .seat { background-color: #D9EDF7; border: 1px solid black; }
     .execseat { background-color: orange; border: 1px solid black; }
 
@@ -71,12 +70,6 @@
                         <i class="ui icon erase large"></i>
                         <div class="content">
                           <div class="header" id="trash">Trash Bin</div>
-                        </div>
-                      </div>
-                      <div class="item">
-                        <i class="ui icon erase large"></i>
-                        <div class="content">
-                          <div class="header" id="eraser">Eraser</div>
                         </div>
                       </div>
                     </div>

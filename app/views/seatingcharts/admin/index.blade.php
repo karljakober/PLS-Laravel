@@ -6,11 +6,11 @@
 
 @section('content')
 
-@if ($seatingCharts->count())
-<div class="main container inverted">
-    <div class="ui fixed page grid">
+<div class="main container">
+    <div class="ui grid">
         <div class="sixteen wide column">
             <p>{{ HTML::decode(link_to_route('admin.seatingchart.create', '<i class="ui icon plus"></i>New SeatingChart', null, array('class' => 'ui orange button' ))) }}</p>
+            @if ($seatingCharts->count())
             <table class="ui table inverted">
                 <thead>
                     <tr>
@@ -33,11 +33,11 @@
                     @endforeach
                 </tbody>
             </table>
+            @else
+                There are no seating charts
+            @endif
         </div>
     </div>
 </div>
-@else
-    There are no seating charts
-@endif
 
 @stop

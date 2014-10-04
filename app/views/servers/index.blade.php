@@ -14,8 +14,8 @@
 		</div>
 	</div>
 </div>
-<div class="main container inverted">
-	<div class="ui fixed page grid">
+<div class="main container">
+	<div class="ui grid">
 		<div class="sixteen wide column">
 			<table class="ui table inverted">
 				<thead>
@@ -63,8 +63,8 @@
 		</div>
 	</div>
 </div>
-<div class="main container inverted">
-	<div class="ui fixed page grid">
+<div class="main container">
+	<div class="ui grid">
 		<div class="sixteen wide column">
 			@if ($userservers->count())
 				<table class="ui table inverted">

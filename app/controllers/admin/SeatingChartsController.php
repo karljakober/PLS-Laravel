@@ -41,6 +41,7 @@ class SeatingChartsController extends \BaseController {
             $chart->save();
             $chartId = $chart->id;
             $tiles = array();
+ 
             foreach ($data['tiles'] as $thetile) {
                 $tile = array();
                 $tile['seating_chart_id'] = $chartId;
@@ -49,10 +50,12 @@ class SeatingChartsController extends \BaseController {
                 $tile['tile_id'] = $thetile['tileName'];
                 if (isset($thetile['seatId'])) {
                     $tile['seat_number'] = $thetile['seatId'];
+                } else {
+                    $tile['seat_number'] = null;
                 }
                 $tiles[] = $tile;
             }
-            \DB::table('seating_chart_tiles')->insert($tiles);
+            \SeatingChartTile::insert($tiles);
         }
         echo 'success';
         exit();

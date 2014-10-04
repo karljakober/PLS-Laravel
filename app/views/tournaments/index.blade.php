@@ -13,8 +13,8 @@
 	</div>
 </div>
 @if ($tournaments->count())
-<div class="main container inverted">
-	<div class="ui fixed page grid">
+<div class="main container">
+	<div class="ui grid">
 		<div class="sixteen wide column">
 			<table class="ui table inverted">
 				<thead>
@@ -41,9 +41,9 @@
 							@if ($inlist)
 		                    <td>
 								@if ($inlist && isset($tournament->user) && $tournament->user->id == Auth::user()->id)
-		                        {{ link_to_route('tournaments.edit', 'Edit', array($tournament->id), array('class' => 'btn btn-info')) }}
+		                            {{ link_to_route('tournaments.edit', 'Edit', array($tournament->id), array('class' => 'ui orange button')) }}
 		                   		@else
-								&nbsp;
+								    &nbsp;
 								@endif
 							</td>
 							@endif

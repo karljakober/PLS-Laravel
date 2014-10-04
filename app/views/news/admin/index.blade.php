@@ -15,8 +15,8 @@
 
 
 @if ($news->count())
-<div class="main container inverted">
-    <div class="ui fixed page grid">
+<div class="main container">
+    <div class="ui grid">
         <div class="sixteen wide column">
             <p>{{ HTML::decode(link_to_route('admin.news.create', '<i class="ui icon plus"></i>New News', null, array('class' => 'ui orange button' ))) }}</p>
             <table class="ui table inverted">

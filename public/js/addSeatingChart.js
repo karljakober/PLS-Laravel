@@ -8,7 +8,7 @@ $(function() {
 
         removedSeats = [],
 
-        selectedTile = false,
+        selectedTile = 'floor',
         isMouseDown = false,
 
         tbl = $('<table></table>'),
@@ -23,7 +23,7 @@ $(function() {
         for (x = 1; x <= cols; x += 1) {
             td = $('<td></td>');
             td.css('width', gsize + 'px').css('height', gsize + 'px').css('font-size', '50%').css('text-align', 'center');
-            td.addClass('eraser');
+            td.addClass('floor');
             tr.append(td);
         }
         tbl.append(tr);
@@ -43,7 +43,7 @@ $(function() {
         }
         if (xchange > 0) {
             $('#grid-overlay').find('tr').each(function () {
-                $(this).find('td').eq(-1).after(Array(xchange + 1).join("<td class='eraser' style='width:16px; height:16px;'></td>"));
+                $(this).find('td').eq(-1).after(Array(xchange + 1).join("<td class='floor' style='width:16px; height:16px;'></td>"));
             });
         }
         cols = newx;
@@ -63,7 +63,7 @@ $(function() {
                 for (x = 1; x <= cols; x += 1) {
                     td = $('<td></td>');
                     td.css('width', gsize + 'px').css('height', gsize + 'px').css('text-size', '65%').css('text-align', 'center');
-                    td.addClass('eraser');
+                    td.addClass('floor');
                     tr.append(td);
                 }
                 tbl.append(tr);
@@ -92,10 +92,6 @@ $(function() {
 
     $('#trash').click(function () {
         selectedTile = 'trash';
-    });
-
-    $('#eraser').click(function () {
-        selectedTile = 'eraser';
     });
 
     $('#setHeight').click(function () {
