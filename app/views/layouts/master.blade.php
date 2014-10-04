@@ -20,7 +20,11 @@
   <script src="/semantic/packaged/definitions/javascript/semantic.js"></script>
   <script src="/js/pong.js"></script>
   <script src="/js/waypoints.js"></script>
-
+  @if(isset($jsIncludes))
+    @foreach($jsIncludes as $include)
+      {{ HTML::script('js/' . $include) }}
+    @endforeach
+  @endif
 
   <link href="/css/nanoscroller.css" rel="stylesheet">
 

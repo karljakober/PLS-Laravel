@@ -1,6 +1,6 @@
 <?php namespace Admin;
 
-class UserController extends \BaseController {
+class UsersController extends \BaseController {
 
     /**
     * Display a listing of the resource.
@@ -9,7 +9,7 @@ class UserController extends \BaseController {
     */
     public function index()
     {
-        $users = \Users::all();
+        $users = \User::all();
         return \View::make('user.admin.index', compact('users'));
     }
 

@@ -12,15 +12,18 @@
 */
 
 //Protect everything from csrf
+Route::when('admin/seatingchart/store', null, array('post'));
 Route::when('*', 'csrf', array('post', 'put', 'delete'));
 
 //Admin Control
 Route::group(array('prefix' => 'admin', 'before' => 'admin'), function()
 {
-    Route::resource('users', 'admin\\UserController');
+    Route::resource('users', 'admin\\UsersController');
     Route::resource('lans', 'admin\\LansController');
     Route::resource('tournaments', 'admin\\TournamentsController');
     Route::resource('seatingchart', 'admin\\SeatingChartsController');
+    Route::post('seatingchart/store', array('uses' => 'admin\\SeatingChartsController@store'));
+
     Route::resource('news', 'admin\\NewsController');
     Route::resource('servers', 'admin\\ServersController');
 });
@@ -41,13 +44,13 @@ Route::get('/sponsors', array('uses' => 'HomeController@getSponsors'));
     profile
     settings - auth
 */
-Route::get('/login', array('uses' => 'UserController@getLogin'));
-Route::post('/login', array('uses' => 'UserController@postLogin'));
-Route::get('/register', array('uses' => 'UserController@getRegister'));
-Route::post('/register', array('uses' => 'UserController@postRegister'));
-Route::get('/logout', array('uses' => 'UserController@getLogout'));
-Route::get('/settings', array('uses' => 'UserController@getSettings'));
-Route::any('/user/{username}', array('as' => 'user', 'uses' => 'UserController@getProfile'));
+Route::get('/login', array('uses' => 'UsersController@getLogin'));
+Route::post('/login', array('uses' => 'UsersController@postLogin'));
+Route::get('/register', array('uses' => 'UsersController@getRegister'));
+Route::post('/register', array('uses' => 'UsersController@postRegister'));
+Route::get('/logout', array('uses' => 'UsersController@getLogout'));
+Route::get('/settings', array('uses' => 'UsersController@getSettings'));
+Route::any('/user/{username}', array('as' => 'user', 'uses' => 'UsersController@getProfile'));
 
 /*Servers:
     index
@@ -71,6 +74,8 @@ Route::resource('tournaments', 'TournamentsController', array('except' => array(
     stand - auth
 */
 Route::controller('seatingchart', 'SeatingChartsController');
+Route::any('/seatingchart/{id}', array('as' => 'seatingchart', 'uses' => 'SeatingChart@getShow'));
+
 
 /*Messages:
     postRegister - auth

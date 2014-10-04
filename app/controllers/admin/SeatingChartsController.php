@@ -1,18 +1,6 @@
-<?php
+<?php namespace admin;
 
 class SeatingChartsController extends \BaseController {
-
-    /**
-     * SeatingChart Repository
-     *
-     * @var SeatingChart
-     */
-    protected $seatingChart;
-
-    public function __construct(SeatingChart $seatingChart)
-    {
-        $this->seatingChart = $seatingChart;
-    }
 
     /**
      * Display a listing of the resource.
@@ -21,18 +9,8 @@ class SeatingChartsController extends \BaseController {
      */
     public function index()
     {
-        if(!Lan::active()) {
-            $lan = Lan::next();
-            if (!$lan) {
-                $lan = Lan::previous();
-            }
-        } else {
-            $lan = Lan::active();
-        }
-
-        $seatingChart = $this->seatingChart->find($lan->seating_chart_id)->first();
-        $seatingChartTiles = SeatingChartTile::where('seating_chart_id', '=', $lan->seating_chart_id)->get();
-        return View::make('seatingcharts.index', compact('seatingChart', 'seatingChartTiles'));
+        $seatingCharts = \SeatingChart::all();
+        return \View::make('seatingcharts.admin.index', compact('seatingCharts'));
     }
 
     /**
@@ -42,7 +20,8 @@ class SeatingChartsController extends \BaseController {
      */
     public function create()
     {
-        return View::make('seatingcharts.create');
+        $jsIncludes = array('addSeatingChart.js');
+        return \View::make('seatingcharts.admin.create', compact('jsIncludes'));
     }
 
     /**
@@ -52,20 +31,31 @@ class SeatingChartsController extends \BaseController {
      */
     public function store()
     {
-        $input = Input::all();
-        $validation = Validator::make($input, SeatingChart::$rules);
+        if(\Input::get('jsonData')) {
 
-        if ($validation->passes())
-        {
-            $this->seatingChart->create($input);
-
-            return Redirect::route('seatingcharts.index');
+            $data = json_decode(\Input::get('jsonData'),true);
+            $chart = new \SeatingChart;
+            $chart->name = $data['name'];
+            $chart->width = $data['width'];
+            $chart->height = $data['height'];
+            $chart->save();
+            $chartId = $chart->id;
+            $tiles = array();
+            foreach ($data['tiles'] as $thetile) {
+                $tile = array();
+                $tile['seating_chart_id'] = $chartId;
+                $tile['x'] = $thetile['x'];
+                $tile['y'] = $thetile['y'];
+                $tile['tile_id'] = $thetile['tileName'];
+                if (isset($thetile['seatId'])) {
+                    $tile['seat_number'] = $thetile['seatId'];
+                }
+                $tiles[] = $tile;
+            }
+            \DB::table('seating_chart_tiles')->insert($tiles);
         }
-
-        return Redirect::route('seatingcharts.create')
-            ->withInput()
-            ->withErrors($validation)
-            ->with('message', 'There were validation errors.');
+        echo 'success';
+        exit();
     }
 
     /**
@@ -76,9 +66,9 @@ class SeatingChartsController extends \BaseController {
      */
     public function show($id)
     {
-        $seatingChart = $this->seatingChart->findOrFail($id);
+        $seatingChart = \SeatingChart::findOrFail($id);
 
-        return View::make('seatingcharts.show', compact('seatingChart'));
+        return \View::make('seatingcharts.show', compact('seatingChart'));
     }
 
     /**
@@ -89,14 +79,14 @@ class SeatingChartsController extends \BaseController {
      */
     public function edit($id)
     {
-        $seatingChart = $this->seatingChart->find($id);
+        $seatingChart = \SeatingChart::find($id);
 
         if (is_null($seatingChart))
         {
-            return Redirect::route('seatingcharts.index');
+            return \Redirect::route('seatingcharts.index');
         }
 
-        return View::make('seatingcharts.edit', compact('seatingChart'));
+        return \View::make('seatingcharts.edit', compact('seatingChart'));
     }
 
     /**
@@ -108,17 +98,17 @@ class SeatingChartsController extends \BaseController {
     public function update($id)
     {
         $input = array_except(Input::all(), '_method');
-        $validation = Validator::make($input, SeatingChart::$rules);
+        $validation = \Validator::make($input, \SeatingChart::$rules);
 
         if ($validation->passes())
         {
-            $seatingChart = $this->seatingChart->find($id);
+            $seatingChart = \SeatingChart::find($id);
             $seatingChart->update($input);
 
-            return Redirect::route('seatingcharts.show', $id);
+            return \Redirect::route('seatingcharts.show', $id);
         }
 
-        return Redirect::route('seatingcharts.edit', $id)
+        return \Redirect::route('seatingcharts.edit', $id)
             ->withInput()
             ->withErrors($validation)
             ->with('message', 'There were validation errors.');
@@ -132,9 +122,9 @@ class SeatingChartsController extends \BaseController {
      */
     public function destroy($id)
     {
-        $this->seatingChart->find($id)->delete();
+        \SeatingChart::find($id)->delete();
 
-        return Redirect::route('seatingcharts.index');
+        return \Redirect::route('seatingcharts.index');
     }
 
 }

@@ -5,7 +5,7 @@
 @extends('layouts.master')
 
 @section('content')
-<script>
+<script type="text/javascript">
 $(function () {
     $('[data-toggle="popover"]').popover();
     $('[data-toggle="popover"]').click(function () {
@@ -51,13 +51,13 @@ $(function () {
                         @if (isset($tile->seat_number) && $tile->seat_number != "")
                             @if (isset($tile['UserSeating']))
                                 <?php //There is someone sitting down ?>
-                                <td class="@if ($tile['SeatingChartTile']['tile_id'] == 'execseat') {{ 'execseattaken' }} @else {{ 'seattaken' }} @endif" style="width: 16px; height: 16px; font-size: 50%; text-align: center;" data-container="body" data-toggle="tooltip" data-placement="left" title="" data-original-title="{{ $tile['User']['username'] }} is sitting here!">{{ $tile['SeatingChartTile']['seat_number'] }}
+                                <td class="@if ($tile->tile_id == 'execseat') {{ 'execseattaken' }} @else {{ 'seattaken' }} @endif" style="width: 16px; height: 16px; font-size: 50%; text-align: center;" data-container="body" data-toggle="tooltip" data-placement="left" title="" data-original-title="{{ $tile->User->username }} is sitting here!">{{ $tile->seat_number }}
                             @else
                             	<?php //no one sitting down ?>
-                                <td class="{{ $tile['SeatingChartTile']['tile_id'] }}" style="width: 16px; height: 16px; font-size: 50%; text-align: center;" data-container="body" data-toggle="popover" data-placement="left" data-content="No one is currently sitting here. Would you like to Sit down?">{{ $tile['SeatingChartTile']['seat_number'] }}
+                                <td class="{{ $tile->tile_id }}" style="width: 16px; height: 16px; font-size: 50%; text-align: center;" data-container="body" data-toggle="popover" data-placement="left" data-content="No one is currently sitting here. Would you like to Sit down?">{{ $tile->seat_number }}
                             @endif
                         @else
-                            <td class="{{ $tile['SeatingChartTile']['tile_id'] }}" style="width: 16px; height: 16px; font-size: 50%; text-align: center;"></td>
+                            <td class="{{ $tile->tile_id }}" style="width: 16px; height: 16px; font-size: 50%; text-align: center;"></td>
                			@endif
                     @endforeach
                 </tbody>

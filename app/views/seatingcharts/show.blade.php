@@ -2,9 +2,9 @@
 
 @section('main')
 
-<h1>Show Seating_chart</h1>
+<h1>Show Seating Chart</h1>
 
-<p>{{ link_to_route('seating_charts.index', 'Return to All seating_charts', null, array('class'=>'btn btn-lg btn-primary')) }}</p>
+<p>{{ link_to_route('seatingcharts.index', 'Return to All seating_charts', null, array('class'=>'btn btn-lg btn-primary')) }}</p>
 
 <table class="table table-striped">
 	<thead>
@@ -17,9 +17,9 @@
 
 	<tbody>
 		<tr>
-			<td>{{{ $seating_chart->name }}}</td>
-					<td>{{{ $seating_chart->width }}}</td>
-					<td>{{{ $seating_chart->height }}}</td>
+			<td>{{{ $seatingchart->name }}}</td>
+					<td>{{{ $seatingchart->width }}}</td>
+					<td>{{{ $seatingchart->height }}}</td>
                     <td>
                         {{ Form::open(array('style' => 'display: inline-block;', 'method' => 'DELETE', 'route' => array('seating_charts.destroy', $seating_chart->id))) }}
                             {{ Form::submit('Delete', array('class' => 'btn btn-danger')) }}

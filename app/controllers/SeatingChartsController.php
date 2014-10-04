@@ -35,4 +35,10 @@ class SeatingChartsController extends BaseController {
 		return View::make('seatingcharts.index', compact('seatingChart', 'seatingChartTiles'));
 	}
 
+	public function getShow($id)
+	{
+
+		return View::make('seatingcharts.show');
+	}
+
 }
