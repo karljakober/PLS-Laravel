@@ -5,10 +5,12 @@
 ## Installation
 
 Clone repo
+
+
 ```
 cd PLS-Laravel/
-sudo composer install
 ```
+
 create pls_config.php file inside app/config directory
 contents below, modify to fit your database information
 ```
@@ -19,6 +21,23 @@ define('MYSQL_HOST', 'localhost');
 define('MYSQL_DATABASE', 'pls');
 
 ```
+
+install composer
+```
+php curl -s https://getcomposer.org/installer | php
+mv composer.phar /usr/local/bin/composer
+```
+
+Ensure php5-mcrypt and php5-curl are installed
+```
+sudo composer install
+```
+
+ensure your temp directory is writable
+```
+chmod -R 0777 app/storage
+```
+
 Ensure correct database is made
 ```
 php artisan migrate
